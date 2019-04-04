@@ -20,8 +20,10 @@ function login() {
 
         },
         error: function(error){
-            alert("Masukkan username dan password yang benar")
-        }
+            console.log(error)
+        },
+        
+
         // complete: function() {
 
         // }
@@ -137,6 +139,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/user/getUser/'+getCookieNPK,
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -157,6 +164,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -166,6 +178,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/user/getAll',
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -182,6 +199,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -192,6 +214,11 @@ function getDetailPosisiPerNPK() {
         url:'http://10.10.100.152:4869/user/getDetailedPosisi/'+npk,
         method: 'GET',
         async:true,
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         // contentType: 'application/json',
         // data: JSON.stringify({
 
@@ -205,11 +232,16 @@ function getDetailPosisiPerNPK() {
             $("#role-code").val(result.data.role_id)
         },
         error: function(error){
-            alert("Masukkan username dan password yang benar")
-        }
-        // complete: function() {
+            // alert(error)
+        },
+        complete: function() {
 
-        // }
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
+        }
     })
 }
 
@@ -218,6 +250,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/master/posisi/getAll',
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -234,6 +271,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -244,6 +286,11 @@ function getPosisiByIdPosisi() {
         url:'http://10.10.100.152:4869/master/posisi/getPosisiById/'+posisi_id,
         method: 'GET',
         async:false,
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         // contentType: 'application/json',
         // data: JSON.stringify({
 
@@ -255,16 +302,26 @@ function getPosisiByIdPosisi() {
             $("#receiver").val("Manager " + result.data.posisi_name)
         },
         error: function(error){
-            alert("Masukkan username dan password yang benar")
-        }
-        // complete: function() {
+            // alert(error)
+        },
+        complete: function() {
 
-        // }
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
+        }
     })
     $.ajax({
         url:'http://10.10.100.152:4869/master/role/getRoleManajerByPosisiId/'+posisi_id,
         method: 'GET',
         async:false,
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         // contentType: 'application/json',
         // data: JSON.stringify({
 
@@ -274,11 +331,17 @@ function getPosisiByIdPosisi() {
             $("#receiver-name").val(result.data.role_name)
         },
         error: function(error){
-            alert("Masukkan username dan password yang benar")
-        }
-        // complete: function() {
+            // alert(error)
+        },
+        complete: function() {
 
-        // }
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
+        }
+
     })
 }
 
@@ -301,6 +364,11 @@ function submitRequest() {
         url:'http://10.10.100.152:4869/request/submit',
         method: 'POST',
         async:true,
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         contentType: 'application/json',
         data: JSON.stringify({
 
@@ -334,10 +402,15 @@ function submitRequest() {
         },
         error: function(error){
             alert("Submit error")
-        }
-        // complete: function() {
+        },
+        complete: function() {
 
-        // }
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
+        }
     })
 }
 
@@ -346,6 +419,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/master/posisi/getAll',
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -362,6 +440,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -370,6 +453,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/master/role/getAll',
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -386,6 +474,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -397,6 +490,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/task/getAll/'+getCookieNPK,
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -419,6 +517,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -427,7 +530,7 @@ function approveTask(record_id, task_id, action) {
     console.log(record_id, task_id)
     createCookie("record_id", record_id, 7)
     createCookie("task_id", task_id, 7)
-    createCookie("Todo", action, 7)
+
     if (action == "revise"){
         window.location.href = 'revise_form.html'
     }
@@ -442,6 +545,11 @@ $.ajax({
     url: 'http://10.10.100.152:4869/master/keputusan/getAll',
     method : 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // type : 'GET',
     // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
     success: function(result){
@@ -458,6 +566,11 @@ $.ajax({
     },
     complete: function(){
         
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
     }
 })
 
@@ -470,6 +583,11 @@ $.ajax({
     url:'http://10.10.100.152:4869/task/getTaskPerRecordId/'+record_id,
     method: 'GET',
     async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
     // contentType: 'application/json',
     // data: JSON.stringify({
 
@@ -502,11 +620,16 @@ $.ajax({
         
     },
     error: function(error){
-        alert("Masukkan username dan password yang benar")
-    }
-    // complete: function() {
+        // alert(error)
+    },
+    complete: function() {
 
-    // }
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
+    }
 })
 
 
@@ -524,6 +647,11 @@ function submitTask(){
     $.ajax({
         url: 'http://10.10.100.152:4869/task/submit',
         method: 'POST',
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         contentType: 'application/json',
         data: JSON.stringify({
             "process_id" : task_info.process_id,
@@ -564,7 +692,13 @@ function submitTask(){
         },
         complete: function(){
             console.log("mantul")
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
         }
+
     })
 }
 
@@ -588,6 +722,11 @@ function submitRevise() {
         url:'http://10.10.100.152:4869/task/submitrevise',
         method: 'POST',
         async:true,
+        headers: {
+            'Authorization':'Bearer ' + getCookie("token"),
+            // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+            // 'Content-Type':'application/json'
+        },
         contentType: 'application/json',
         data: JSON.stringify({
 
@@ -625,9 +764,14 @@ function submitRevise() {
         },
         error: function(error){
             alert("Submit error")
-        }
-        // complete: function() {
+        },
+        complete: function() {
 
-        // }
+        },
+        statusCode: {
+            403: function() {
+                window.location.href = 'index.html'
+            }
+        }
     })
 }
