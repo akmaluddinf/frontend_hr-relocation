@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="img/png" href="img/logo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <title>Request Form</title>
+</head>
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: royalblue;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h3 style="color: white;">Request Form</h3>
+   
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav ml-auto">
+                <p style="margin: 7px; color: white;">Welcome,</p>
+                <li class="nav-item">
+                    <input type="text" readonly class="form-control-plaintext" id="nama" style="color: white;">
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-success"><a href="home.html" style="text-decoration-line: none; color: white;">Home</a></button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-secondary" onclick="logout()"><a href="index.html" style="text-decoration-line: none; color: white;">Logout</a></button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="accordion" id="accordionExample">
+<!-- ===============================================REQUESTER INFORMATION============================================ -->
+        <div class="card">
+            <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration-line: none;">
+                    <img src="img/requester.png" alt="requester" width="40px"><p style="display: inline-flex; margin: 5px;">Requester Information</p> 
+                </button>
+            </h2>
+            </div>
+        
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="requester-name" class="col-sm-2 col-form-label">Requester Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="requester-npk" class="col-sm-2 col-form-label">Requester NPK</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-npk">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="requester-position" class="col-sm-2 col-form-label">Requester Position</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-position">
+                            </div>
+                        </div>
+                        <div class="form-group row" hidden>
+                            <label for="requester-position" class="col-sm-2 col-form-label">Requester Position Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-position-code">
+                            </div>
+                        </div>
+                        <div class="form-group row" hidden>
+                            <label for="requester-position" class="col-sm-2 col-form-label">Requester Position Role</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-role-code">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="behalf-name" class="col-sm-2 col-form-label">On Behalf Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="behalf-name" placeholder="On Behalf Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="behalf-position" class="col-sm-2 col-form-label">On Behalf Position</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="behalf-position" placeholder="On Behalf Position">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="employee" class="col-sm-2 col-form-label">Employee</label>
+                                <div class="col-sm-10">    
+                                    <select class="form-control" id="listPegawai" onchange="getDetailPosisiPerNPK()" >
+                                        
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="process-id" class="col-sm-2 col-form-label">Process Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="process-id">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!-- ===============================================CURRENT============================================ -->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration-line: none;">
+                    <img src="img/requester2.png" alt="requester" width="40px"><p style="display: inline-flex; margin: 5px;">Current</p>
+                </button>
+            </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="position-code" class="col-sm-2 col-form-label">Position Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="position-code">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="position" class="col-sm-2 col-form-label">Position</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="position">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="company" class="col-sm-2 col-form-label">Company</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="company">
+                            </div>
+                        </div>
+                    
+                        <div class="form-group row">
+                            <label for="personal-area" class="col-sm-2 col-form-label">Personal Area</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="personal-area">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="employee-group" class="col-sm-2 col-form-label">Employee Group</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="employee-group">
+                            </div>
+                        </div>
+                        <div class="form-group row" hidden>
+                            <label for="position-code" class="col-sm-2 col-form-label">Role Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="role-code">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!-- ===============================================PROPOSED=================================================== -->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="text-decoration-line: none;">
+                    <img src="img/requester2.png" alt="requester" width="40px"><p style="display: inline-flex; margin: 5px;">Proposed</p>
+                </button>
+            </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="position-code" class="col-sm-2 col-form-label">Position</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="listPosisi" onchange="getPosisiByIdPosisi()" >
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Company</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="company-proposed">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Personal Area</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="area-proposed">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Employee Type</label>
+                            <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="employee-type">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Receiver</label>
+                            <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="receiver">
+                            </div>
+                        </div>
+                        <div class="form-group row" hidden>
+                            <label for="position-code" class="col-sm-2 col-form-label">Receiver Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="receiver-code">
+                            </div>
+                        </div>
+                        <div class="form-group row" hidden>
+                            <label for="position-code" class="col-sm-2 col-form-label">Receiver Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="receiver-name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Effective Date Start</label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <!-- <input type="text" id="datepicker" /> -->
+                                    <input type="date" id="date">
+                                    <!-- <input type="datetime-local" name="date"> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Justification</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="justification" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" style="margin: 10px 0px;" onclick="submitRequest()">Submit</button>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
