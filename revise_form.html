@@ -54,19 +54,19 @@
                         <div class="form-group row">
                             <label for="requester-name" class="col-sm-2 col-form-label">Requester Name</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="requester-name">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-name-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="requester-npk" class="col-sm-2 col-form-label">Requester NPK</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="requester-npk">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-npk-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="requester-position" class="col-sm-2 col-form-label">Requester Position</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="requester-position">
+                                <input type="text" readonly class="form-control-plaintext" id="requester-position-view">
                             </div>
                         </div>
                         <div class="form-group row" hidden>
@@ -84,21 +84,19 @@
                         <div class="form-group row">
                             <label for="behalf-name" class="col-sm-2 col-form-label">On Behalf Name</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="behalf-name" placeholder="On Behalf Name">
+                                <input type="text" readonly class="form-control-plaintext" id="behalf-name-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="behalf-position" class="col-sm-2 col-form-label">On Behalf Position</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="behalf-position" placeholder="On Behalf Position">
+                                <input type="text" readonly class="form-control-plaintext" id="behalf-position-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="employee" class="col-sm-2 col-form-label">Employee</label>
                                 <div class="col-sm-10">    
-                                    <select class="form-control" id="listPegawai" onchange="getDetailPosisiPerNPK()" >
-                                        
-                                    </select>
+                                    <input type="text" readonly class="form-control-plaintext" id="employee-name-view">
                                 </div>
                         </div>
                         <div class="form-group row">
@@ -127,32 +125,32 @@
                         <div class="form-group row">
                             <label for="position-code" class="col-sm-2 col-form-label">Position Code</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="position-code">
+                                <input type="text" readonly class="form-control-plaintext" id="position-code-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="position" class="col-sm-2 col-form-label">Position</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="position">
+                                <input type="text" readonly class="form-control-plaintext" id="position-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="company" class="col-sm-2 col-form-label">Company</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="company">
+                                <input type="text" readonly class="form-control-plaintext" id="company-view">
                             </div>
                         </div>
                     
                         <div class="form-group row">
                             <label for="personal-area" class="col-sm-2 col-form-label">Personal Area</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="personal-area">
+                                <input type="text" readonly class="form-control-plaintext" id="personal-area-view">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="employee-group" class="col-sm-2 col-form-label">Employee Group</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="employee-group">
+                                <input type="text" readonly class="form-control-plaintext" id="employee-group-view">
                             </div>
                         </div>
                         <div class="form-group row" hidden>
@@ -254,7 +252,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/revise_form.js"></script>
     
 </body>
 </html>
