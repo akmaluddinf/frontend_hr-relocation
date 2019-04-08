@@ -189,7 +189,7 @@ function submitTask(){
             eraseCookie("task_id")
             console.log(result)
             alert("Anda berhasil submit task")
-            
+            window.location.href = 'home.html'
         },
         error: function(){
             alert("Anda gagal submit task")
@@ -205,3 +205,68 @@ function submitTask(){
 
     })
 }
+
+// ============================================HISTORY FORM============GET ALL HISTORY
+$.ajax({
+    url: 'http://10.10.100.152:4869/stageview/getPerRecordId',
+    method : 'POST',
+    async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
+
+    contentType: 'application/json',
+    data: JSON.stringify({
+        record_id:  getCookie("record_id"),
+        user_login: {
+            npk: getCookie("npk")
+        }
+
+    }),
+    // type : 'GET',
+    // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
+    success: function(result){
+        var tabel =""
+        for (let i=0; i<result.data.length; i++){
+            if (result.data[i].type != "record:state:completed"){
+                $("#tabelListHistory").append(
+                `<tr>
+                    <td>`+result.data[i].actor.display_name+`</td>
+                    <!-- <td>`+result.data[i].posisi_name+`</td> -->
+                    <td>`+result.data[i].name+`</td>
+                    <td>`+result.data[i].published+`</td>
+                    <!-- <td>`+result.data[i].completed_at+`</td> -->
+                    <!-- <td>`+result.data[i].response+`</td> -->
+                    <td>`+result.data[i].target.content+`</td>
+                </tr>`
+                )
+            } 
+            else {
+                $("#tabelListHistory").append(
+                    `<tr>
+                        <td>`+result.data[i].actor.display_name+`</td>
+                        <!-- <td>`+result.data[i].posisi_name+`</td> -->
+                        <td>`+result.data[i].name+`</td>
+                        <td>`+result.data[i].published+`</td>
+                        <!-- <td>`+result.data[i].completed_at+`</td> -->
+                        <!-- <td>`+result.data[i].response+`</td> -->
+                        <td>`+"completed"+`</td>
+                    </tr>`
+                    )
+            }
+        }  
+    },
+    error : function(){
+        // error handling
+    },
+    complete: function(){
+        
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
+    }
+})

@@ -232,7 +232,7 @@ function submitRequest() {
     var role_id_tujuan = document.getElementById("receiver-code").value;
     var behalf_name = document.getElementById("behalf-name").value;
     var behalf_position = document.getElementById("behalf-position").value;
-    var effective_date = document.getElementById("date").value;
+    var effective_date = document.getElementById("date").valueAsDate
     var requester_npk = document.getElementById("requester-npk").value
     var requester_position_code = document.getElementById("requester-position-code").value
     var requester_role_code = document.getElementById("requester-role-code").value
@@ -277,6 +277,7 @@ function submitRequest() {
         success: function(result) {
             console.log(result)
             alert("Anda berhasil submit")
+            window.location.href = 'home.html'
         },
         error: function(error){
             alert("Submit error")

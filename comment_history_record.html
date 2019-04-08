@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-    <title>Home</title>
+    <title>Task Form</title>
 </head>
 <body>
 
@@ -17,14 +17,16 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <h3 style="color: white;">Home</h3>
-   
+        <h3 style="color: white;">List Task</h3>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <ul class="navbar-nav ml-auto">
                 <p style="margin: 7px; color: white;">Welcome,</p>
                 <li class="nav-item">
                     <input type="text" readonly class="form-control-plaintext" id="nama" style="color: white;">
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-success"><a href="home.html" style="text-decoration-line: none; color: white;">Home</a></button>
                 </li>
                 <li class="nav-item">
                     <button type="button" class="btn btn-secondary" onclick="logout()"><a href="index.html" style="text-decoration-line: none; color: white;">Logout</a></button>
@@ -34,23 +36,24 @@
     </nav>
 
 
-    <div class="card-deck" style="margin: 0;">
-        <div class="card" style="border: white;">
-          <img src="img/create.png" class="card-img-top" alt="create_request">
-          <a href="request_form.html" class="btn btn-primary">Create Request</a>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-light">
+            <tr style="text-align: center;">
+                <th scope="col">Participant</th>
+                <!-- <th scope="col">Position</th> -->
+                <th scope="col">Activity</th>
+                <th scope="col">Started</th>
+                <!-- <th scope="col">Completed</th> -->
+                <!-- <th scope="col">Response</th> -->
+                <th scope="col">Comment</th>
+            </tr>
+            </thead>
+            <tbody id="tabelListHistory">
 
-        <div class="card" style="border: white;">
-          <img src="img/task.png" class="card-img-top" alt="task">
-          <a href="view_task.html" class="btn btn-primary" style="margin: -3px 0px;">View Task</a>
-        </div>
-
-        <div class="card" style="border: white;">
-          <img src="img/comment.svg" class="card-img-top" alt="comment">
-          <a href="history_form2.html" class="btn btn-primary" style="margin: 6px 0px;">Comment History</a>
-        </div>
+            </tbody>
+        </table>
     </div>
-
 
 
 
@@ -62,7 +65,7 @@
     <script src="http://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="js/logout.js"></script>
-    <script src="js/home.js"></script>
+    <script src="js/comment_history_record.js"></script>
     
 </body>
 </html>

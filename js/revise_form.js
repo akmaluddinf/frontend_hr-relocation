@@ -68,6 +68,7 @@ $.ajax({
         console.log(result)
         task_info = result.data
         $("#requester-name-view").val(result.data.requester_name)
+        $("#requester-name-view").val(result.data.requester_name)
         $("#requester-npk-view").val(result.data.requester_id)
         $("#requester-position-view").val(result.data.requester_name)
         $("#behalf-name-view").val(result.data.behalf_name)
@@ -198,15 +199,15 @@ function getPosisiByIdPosisi() {
 
 // =============================================================SUBMIT REVISE==================
 function submitRevise() {
-    var npk = document.getElementById("listPegawai").value;
-    var posisi_id_awal = document.getElementById("position-code").value;
+    var npk = document.getElementById("employee-code-view").value;
+    var posisi_id_awal = document.getElementById("position-code-view").value;
     var role_id_awal = document.getElementById("role-code").value;
     var posisi_id_tujuan = document.getElementById("listPosisi").value;
     var role_id_tujuan = document.getElementById("receiver-code").value;
-    var behalf_name = document.getElementById("behalf-name").value;
-    var behalf_position = document.getElementById("behalf-position").value;
-    var effective_date = document.getElementById("date").value;
-    var requester_npk = document.getElementById("requester-npk").value
+    var behalf_name = document.getElementById("behalf-name-view").value;
+    var behalf_position = document.getElementById("behalf-position-view").value;
+    var effective_date = document.getElementById("date").valueAsDate
+    var requester_npk = document.getElementById("requester-npk-view").value
     var requester_position_code = document.getElementById("requester-position-code").value
     var requester_role_code = document.getElementById("requester-role-code").value
     var comment = document.getElementById("justification").value
@@ -254,6 +255,7 @@ function submitRevise() {
             eraseCookie("task_id")
             console.log(result)
             alert("Anda berhasil submit revise")
+            window.location.href = 'home.html'
         },
         error: function(error){
             alert("Submit error")
@@ -268,3 +270,68 @@ function submitRevise() {
         }
     })
 }
+
+// ============================================HISTORY FORM============GET ALL HISTORY
+$.ajax({
+    url: 'http://10.10.100.152:4869/stageview/getPerRecordId',
+    method : 'POST',
+    async:true,
+    headers: {
+        'Authorization':'Bearer ' + getCookie("token"),
+        // 'X-CSRF-TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+        // 'Content-Type':'application/json'
+    },
+
+    contentType: 'application/json',
+    data: JSON.stringify({
+        record_id:  getCookie("record_id"),
+        user_login: {
+            npk: getCookie("npk")
+        }
+
+    }),
+    // type : 'GET',
+    // data: [],{}, string, int, JSON.stringify([{}]) --> misalnya API butuh data dr user,
+    success: function(result){
+        var tabel =""
+        for (let i=0; i<result.data.length; i++){
+            if (result.data[i].type != "record:state:completed"){
+                $("#tabelListHistory").append(
+                `<tr>
+                    <td>`+result.data[i].actor.display_name+`</td>
+                    <!-- <td>`+result.data[i].posisi_name+`</td> -->
+                    <td>`+result.data[i].name+`</td>
+                    <td>`+result.data[i].published+`</td>
+                    <!-- <td>`+result.data[i].completed_at+`</td> -->
+                    <!-- <td>`+result.data[i].response+`</td> -->
+                    <td>`+result.data[i].target.content+`</td>
+                </tr>`
+                )
+            } 
+            else {
+                $("#tabelListHistory").append(
+                    `<tr>
+                        <td>`+result.data[i].actor.display_name+`</td>
+                        <!-- <td>`+result.data[i].posisi_name+`</td> -->
+                        <td>`+result.data[i].name+`</td>
+                        <td>`+result.data[i].published+`</td>
+                        <!-- <td>`+result.data[i].completed_at+`</td> -->
+                        <!-- <td>`+result.data[i].response+`</td> -->
+                        <td>`+"completed"+`</td>
+                    </tr>`
+                    )
+            }
+        } 
+    },
+    error : function(){
+        // error handling
+    },
+    complete: function(){
+        
+    },
+    statusCode: {
+        403: function() {
+            window.location.href = 'index.html'
+        }
+    }
+})
